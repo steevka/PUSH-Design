@@ -97,7 +97,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 
         <div className="px-6 pt-24 pb-32 md:px-10 md:pt-32 md:pb-40">
           <div className="mx-auto max-w-[1400px]">
-            <p className="mb-12 font-mono text-[10px] uppercase tracking-[0.22em] text-fg-muted">
+            <p className="mx-auto mb-12 max-w-[56rem] font-mono text-[10px] uppercase tracking-[0.22em] text-fg-muted">
               <span className="text-accent">§</span> Case study
             </p>
             <article className="case-prose">
