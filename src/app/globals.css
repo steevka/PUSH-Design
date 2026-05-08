@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #0a0818;
-  --bg-elev: #14112a;
+  --bg: #050505;
+  --bg-elev: #0c0c0c;
   --fg: #f4ebf5;
   --fg-muted: #a89bb5;
   --fg-dim: #4a3f5e;
@@ -29,6 +29,14 @@
 
 html {
   color-scheme: dark;
+}
+
+@media (pointer: fine) {
+  html,
+  body,
+  body * {
+    cursor: none;
+  }
 }
 
 html,

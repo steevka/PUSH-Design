@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
+import { BrowserFrame } from "./browser-frame";
 import type { Work } from "@/lib/works";
 
 interface WorkLightboxProps {
@@ -44,7 +45,7 @@ export function WorkLightbox({ work, onClose }: WorkLightboxProps) {
           />
 
           <motion.article
-            className="relative z-10 flex max-h-[90vh] w-[min(1200px,92vw)] flex-col overflow-hidden border border-line-strong bg-bg-elev md:flex-row"
+            className="relative z-10 flex max-h-[90vh] w-[min(1200px,92vw)] flex-col gap-6 overflow-hidden border border-line-strong bg-bg-elev p-6 md:flex-row md:gap-8 md:p-8"
             initial={{ y: 24, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 24, opacity: 0 }}
@@ -53,18 +54,21 @@ export function WorkLightbox({ work, onClose }: WorkLightboxProps) {
               ease: [0.2, 0.8, 0.2, 1],
             }}
           >
-            <div className="grain relative aspect-[16/11] w-full overflow-hidden md:aspect-auto md:w-[55%]">
-              <Image
-                src={work.image}
-                alt={`${work.client} — ${work.title}`}
-                fill
-                sizes="(min-width: 768px) 55vw, 100vw"
-                className="object-cover"
-                unoptimized
-              />
+            <div className="md:w-[55%]">
+              <BrowserFrame url={work.url}>
+                <Image
+                  src={work.image}
+                  alt={`${work.client} — ${work.title}`}
+                  width={3006}
+                  height={1844}
+                  className="h-auto w-full"
+                  priority
+                  unoptimized
+                />
+              </BrowserFrame>
             </div>
 
-            <div className="flex flex-1 flex-col justify-between gap-10 overflow-y-auto px-6 py-8 md:px-10 md:py-12">
+            <div className="flex flex-1 flex-col justify-between gap-8 overflow-y-auto">
               <div className="flex flex-col gap-6">
                 <div className="flex items-center gap-4 font-mono text-[10px] uppercase tracking-[0.22em] text-fg-muted">
                   <span className="text-accent">{work.index}</span>

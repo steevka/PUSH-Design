@@ -108,7 +108,7 @@ interface DisplacedPlateProps {
 }
 
 const FADE_IN_SECONDS = 1.0;
-const BG_COLOR = new THREE.Color("#0a0818");
+const BG_COLOR = new THREE.Color("#050505");
 
 function DisplacedMesh({
   texture,

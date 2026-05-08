@@ -57,15 +57,15 @@ export function WorkCursorPreview({ work, enabled }: WorkCursorPreviewProps) {
           transition={{ duration: 0.25, ease: [0.2, 0.8, 0.2, 1] }}
         >
           <motion.div
-            className="grain relative h-[260px] w-[360px] overflow-hidden bg-bg-elev shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)]"
+            className="grain relative aspect-[1503/922] w-[380px] overflow-hidden bg-bg-elev shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)]"
             style={{ rotate }}
           >
             <Image
               src={work.image}
               alt=""
               fill
-              sizes="360px"
-              className="object-cover"
+              sizes="380px"
+              className="object-contain"
               unoptimized
             />
             <div className="absolute inset-0 bg-gradient-to-t from-bg/40 to-transparent" />

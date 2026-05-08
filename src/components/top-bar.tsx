@@ -14,13 +14,13 @@ export function TopBar() {
         <nav className="font-mono text-[11px] uppercase tracking-[0.22em] text-fg">
           <ul className="flex items-center gap-6">
             <li>
-              <a href="#work" className="opacity-70 transition hover:opacity-100">
-                Work
+              <a href="#about" className="opacity-70 transition hover:opacity-100">
+                About
               </a>
             </li>
             <li>
-              <a href="#about" className="opacity-70 transition hover:opacity-100">
-                About
+              <a href="#work" className="opacity-70 transition hover:opacity-100">
+                Work
               </a>
             </li>
             <li>
