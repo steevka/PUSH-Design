@@ -34,7 +34,7 @@ export function Hero() {
         className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[45vh] bg-gradient-to-b from-transparent via-bg/50 to-bg"
       />
 
-      <div className="relative z-30 flex h-full flex-col justify-between px-6 pt-28 pb-10 md:px-10 md:pb-16">
+      <div className="pointer-events-none relative z-30 flex h-full flex-col justify-between px-6 pt-28 pb-10 md:px-10 md:pb-16">
         <div className="flex items-start justify-between font-mono text-[10px] uppercase tracking-[0.22em] text-fg/60">
           <span>
             Studio online <span className="ml-2 text-accent">●</span>
@@ -56,7 +56,7 @@ export function Hero() {
           </p>
           <a
             href="#work"
-            className="group inline-flex items-center gap-3 self-start font-mono text-[11px] uppercase tracking-[0.22em] text-fg/70 transition hover:text-fg md:self-auto"
+            className="group pointer-events-auto inline-flex items-center gap-3 self-start font-mono text-[11px] uppercase tracking-[0.22em] text-fg/70 transition hover:text-fg md:self-auto"
           >
             <span>Selected work</span>
             <span className="block h-px w-12 bg-fg/40 transition group-hover:w-20 group-hover:bg-fg" />
