@@ -19,6 +19,8 @@ const fragmentShader = /* glsl */ `
   uniform vec2 uMouse;
   uniform float uIntensity;
   uniform float uHover;
+  uniform float uFadeIn;
+  uniform vec3 uBgColor;
   uniform vec2 uTexSize;
   uniform vec2 uViewSize;
   varying vec2 vUv;
@@ -92,6 +94,8 @@ const fragmentShader = /* glsl */ `
     float lum = dot(color, vec3(0.299, 0.587, 0.114));
     color = mix(vec3(lum), color, 0.92);
 
+    color = mix(uBgColor, color, uFadeIn);
+
     gl_FragColor = vec4(color, 1.0);
   }
 `;
@@ -103,6 +107,9 @@ interface DisplacedPlateProps {
   hover?: number;
 }
 
+const FADE_IN_SECONDS = 1.0;
+const BG_COLOR = new THREE.Color("#0a0818");
+
 function DisplacedMesh({
   texture,
   intensity,
@@ -113,6 +120,7 @@ function DisplacedMesh({
   hover: number;
 }) {
   const matRef = useRef<THREE.ShaderMaterial>(null);
+  const mountTimeRef = useRef<number | null>(null);
   const { viewport } = useThree();
 
   const uniforms = useMemo(
@@ -122,6 +130,8 @@ function DisplacedMesh({
       uMouse: { value: new THREE.Vector2(0.5, 0.5) },
       uIntensity: { value: intensity },
       uHover: { value: hover },
+      uFadeIn: { value: 0 },
+      uBgColor: { value: BG_COLOR },
       uTexSize: { value: new THREE.Vector2(1, 1) },
       uViewSize: { value: new THREE.Vector2(1, 1) },
     }),
@@ -131,7 +141,14 @@ function DisplacedMesh({
   useFrame((state) => {
     if (!matRef.current) return;
     const u = matRef.current.uniforms;
-    u.uTime.value = state.clock.elapsedTime;
+
+    if (mountTimeRef.current === null) {
+      mountTimeRef.current = state.clock.elapsedTime;
+    }
+    const localTime = state.clock.elapsedTime - mountTimeRef.current;
+    u.uTime.value = localTime;
+    u.uFadeIn.value = Math.min(localTime / FADE_IN_SECONDS, 1);
+
     u.uViewSize.value.set(state.size.width, state.size.height);
 
     const img = texture.image as
